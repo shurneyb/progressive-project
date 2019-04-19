@@ -13,7 +13,7 @@ function main() {
 
   data.forEach(r => {
     Object.keys(r).forEach(k => {
-      if (k.indexOf("price") >= 0 || k.indexOf("responsibility") >= 0 || k.indexOf("responsility") >= 0) {
+      if (k.indexOf("price") >= 0 || k.indexOf("responsibility") >= 0 || k.indexOf("responsility") >= 0 || k.indexOf("responsility") >= 0) {
         let val = r[k];
         val = val.replace(",", "").replace("$", "");
         r[k] = val;
