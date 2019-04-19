@@ -1,8 +1,10 @@
 import Table from "../Table"
-import duke_drg from "../../data/duke/drg"
+import dukeDRG from "../../data/duke/drg"
 
+/** DukeTable presents the Duke DRG
+ * data in a tabulator table **/
 class DukeTable extends Table {
-  tableData = duke_drg;
+  tableData = dukeDRG;
   columns = [
     { titile: "code", field: "drg_code" },
     { title: "Description", field: "drg_description" },

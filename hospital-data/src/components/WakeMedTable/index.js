@@ -1,8 +1,10 @@
 import Table from "../Table"
-import wakemed_drg from "../../data/wakemed/drg"
+import wakemedDRG from "../../data/wakemed/drg"
 
+/** WakeMedTable presents the Wakemed DRG
+ * data in a tabulator table **/
 class WakeMedTable extends Table {
-  tableData = wakemed_drg;
+  tableData = wakemedDRG;
   columns = [
     { titile: "code", field: "drg_code" },
     { title: "Description", field: "drg_description" },

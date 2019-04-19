@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 
-import duke_drg from "../../data/duke/drg";
-import unc_drg from "../../data/unc/drg";
-import wakemed_drg from "../../data/wakemed/drg";
+import dukeDRG from "../../data/duke/drg";
+import uncDRG from "../../data/unc/drg";
+import wakemedDRG from "../../data/wakemed/drg";
 
 import "./styles.css"
 class BubbleChart extends Component {
@@ -14,17 +14,17 @@ class BubbleChart extends Component {
   constructor(props) {
     super(props);
 
-    this.dukeData = duke_drg.map(r => {
+    this.dukeData = dukeDRG.map(r => {
       r.name = "duke";
       r.key = r.name + r.drg_code;
       return r;
     });
-    this.uncData = unc_drg.map(r => {
+    this.uncData = uncDRG.map(r => {
       r.name = "unc";
       r.key = r.name + r.drg_code;
       return r;
     });
-    this.wakemedData = wakemed_drg.map(r => {
+    this.wakemedData = wakemedDRG.map(r => {
       r.name = "wakemed";
       r.key = r.name + r.drg_code;
       return r;
@@ -47,7 +47,6 @@ class BubbleChart extends Component {
       .append("svg")
       .attr("width", this.width)
       .attr("height", this.height)
-      .attr("style", "border: thin red solid");
   }
 
   drawChart() {

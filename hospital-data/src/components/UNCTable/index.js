@@ -1,8 +1,10 @@
 import Table from "../Table"
-import unc_drg from "../../data/unc/drg"
+import uncDRG from "../../data/unc/drg"
 
+/** UNCTable presents the UNC DRG
+ * data in a tabulator table **/
 class UNCTable extends Table {
-  tableData = unc_drg;
+  tableData = uncDRG;
   columns = [
     { titile: "code", field: "drg_code" },
     { title: "Description", field: "drg_description" },

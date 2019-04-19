@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
 import * as d3 from "d3";
 
-import duke_drg from "../../data/duke/drg";
-import unc_drg from "../../data/unc/drg";
-import wakemed_drg from "../../data/wakemed/drg";
+import dukeDRG from "../../data/duke/drg";
+import uncDRG from "../../data/unc/drg";
+import wakemedDRG from "../../data/wakemed/drg";
 
 import "./styles.css"
 
+/** Groupchart creates a set of bubblecharts
+ * for grouped data
+ */
 class GroupChart extends Component {
 
+  /** Sets up our chart data
+   * @param {object} props
+   */
   constructor(props) {
     super(props);
 
-    this.dukeData = duke_drg.map(r => {
+    this.dukeData = dukeDRG.map(r => {
       r.name = "duke";
       r.key = r.name + r.drg_code;
       return r;
     });
 
-    this.uncData = unc_drg.map(r => {
+    this.uncData = uncDRG.map(r => {
       r.name = "unc";
       r.key = r.name + r.drg_code;
       return r;
     });
 
-    this.wakemedData = wakemed_drg.map(r => {
+    this.wakemedData = wakemedDRG.map(r => {
       r.name = "wakemed";
       r.key = r.name + r.drg_code;
       return r;
@@ -61,7 +67,7 @@ class GroupChart extends Component {
           groupAvgPrice = groupAvgPrice + parseInt(grouped[k].avg_price, 10);
         });
 
-        grouped.avg_price = Math.round(groupAvgPrice / groupKeysCount);
+        groupAvgPrice = Math.round(groupAvgPrice / groupKeysCount);
 
         grouped.avg_price = groupAvgPrice;
 
@@ -86,7 +92,10 @@ class GroupChart extends Component {
     };
   }
 
-
+  /** generates singlegroupcharts for 
+   * each dataset
+   * @return {array} singlegroupchart components
+   */
   getGroupCharts() {
     if (this.state.top20) {
       return this.state.top20.map((d, i) => {
@@ -95,6 +104,9 @@ class GroupChart extends Component {
     }
   }
 
+  /** presents all singlegroupcharts with a header
+   * @return {any} Charts JSX
+   */
   render() {
     return (
       <div>
@@ -105,6 +117,9 @@ class GroupChart extends Component {
   }
 }
 
+/** presents a singlegroupchart used by
+ * groupchart
+ */
 class SingleGroupChart extends Component {
   el = React.createRef();
 
@@ -174,6 +189,10 @@ class SingleGroupChart extends Component {
       .on("click", this.bubbleClicked.bind(this));
   }
 
+  /** creates a pack layout with the given size
+   * @param {array} size [width, height]
+   * @return {function} D3 pack layout
+   */
   pack(size) {
     return d3
       .pack()
@@ -181,6 +200,10 @@ class SingleGroupChart extends Component {
       .padding(3)
   }
 
+  /** creates a pack layout with the given size
+ * @param {array} data records
+ * @return {function} D3 hierarchy
+ */
   makeHierarchy(data) {
     return d3.hierarchy({ children: data }).sum(d => d.avg_price);
   }
@@ -256,7 +279,9 @@ class SingleGroupChart extends Component {
             <div className="flex-row">
               <div className="flex-item">
                 <div className="header">DESCRIPTION</div>
-                <div className="value">{s.data.drg_description.toLowerCase()}</div>
+                <div className="value">
+                  {s.data.drg_description.toLowerCase()}
+                </div>
               </div>
             </div>
           </div>
